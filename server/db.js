@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird'); 
 Promise.promisifyAll(mongoose);
 
-var databaseURI = 'mongodb://localhost:27017/auther';
+var databaseURI = 'mongodb://localhost:27017/autherdarkarts';
 
 var db = mongoose.connect(databaseURI).connection;
 

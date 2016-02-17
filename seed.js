@@ -65,6 +65,8 @@ function generateAll () {
 		photo: 'http://media.licdn.com/media/p/5/005/0ac/184/16505c6.jpg',
 		phone: '(510) 295-5523',
 		email: 'zeke@zeke.zeke',
+		password: 'kateandgustavo',
+
 		isAdmin: true
 	}));
 	users.push(new User({
@@ -72,6 +74,8 @@ function generateAll () {
 		photo: 'http://i.zemanta.com/278070129_80_80.jpg',
 		phone: '(781) 854-8854',
 		email: 'omri@zeke.zeke',
+		password: 'kateandgustavo',
+
 	}));
 	var stories = _.times(numStories, function () {
 		return randStory(users);
