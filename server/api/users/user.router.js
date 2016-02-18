@@ -73,7 +73,7 @@ router.put('/:id', function(req, res, next) {
 
 router.delete('/:id', function(req, res, next) {
     console.log(req.user)
-    if (req.user.isAdmin === true) {
+    if (req.user.isAdmin === true || req.requestedUser._id === req.user._id) {
 
         req.requestedUser.remove()
             .then(function() {
