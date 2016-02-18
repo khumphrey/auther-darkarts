@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    if (req.body.author._id === req.user._id) {
+    if (req.body.author === req.user._id) {
 
         Story.create(req.body)
             .then(function(story) {
@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
                 res.status(201).json(populated);
             })
             .then(null, next);
-    } else { next(); }
+    } else {res.sendStatus(401)  }
 
 });
 
@@ -48,7 +48,8 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.put('/:id', function(req, res, next) {
-    if (req.user.isAdmin === true || req.story.author._id === req.user._id) {
+	console.log('story', req.story.author, 'currentuser', req.user)
+    if (req.user.isAdmin === true || req.story.author === req.user._id) {
 
         _.extend(req.story, req.body);
         req.story.save()
@@ -56,18 +57,19 @@ router.put('/:id', function(req, res, next) {
                 res.json(story);
             })
             .then(null, next);
-    } else { next(); }
+    } else { res.sendStatus(401) }
 
 });
 
 router.delete('/:id', function(req, res, next) {
-    if (req.user.isAdmin === true || req.story.author._id === req.user._id) {
+		console.log('story', req.story, 'currentuser', req.user)
+    if (req.user.isAdmin === true || req.story.author === req.user._id) {
         req.story.remove()
             .then(function() {
                 res.status(204).end();
             })
             .then(null, next);
-    } else { next(); }
+    } else { res.sendStatus(401)  }
 
 });
 

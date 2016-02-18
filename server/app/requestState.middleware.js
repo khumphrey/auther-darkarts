@@ -19,7 +19,7 @@ router.use(function (req, res, next) {
 });
 
 router.use(session({
-	secret: 'guskatavote',
+	secret: require('../../secrets').session,
 	resave: false,
 	saveUninitialized: false
 }));

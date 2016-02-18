@@ -16,7 +16,7 @@ router.get('/callback', passport.authenticate('twitter', {
 passport.use(new TwitterStrategy({
 
 	consumerKey: 'GQNYCZ44nkPfLRos1zh3wmd14 ',
-	consumerSecret: '6Xg2ICsqgHxCffEoWAvScBUroJhBgsAAWaCwieXM7S1aVzeQeZ',
+	consumerSecret: require('../../secrets').twitterSecret,
 	callbackURL: 'http://127.0.0.1:8080/auth/twitter/callback'
 }, function (token, refreshToken, profile, done) { 
 	User.findOne({'twitter.id': profile.id }, function (err, user) {
