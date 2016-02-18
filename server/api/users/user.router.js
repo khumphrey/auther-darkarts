@@ -9,7 +9,7 @@ var User = require('./user.model');
 router.param('id', function(req, res, next, id) {
 	//make sure this is only id
 	//only accept id
-		if (id.search(/[\s\(\)]/) === -1 ) {
+		// if (id.search(/[\s\(\)]/) === -1 ) {
 
     User.findById(id).exec()
         .then(function(user) {
@@ -18,7 +18,7 @@ router.param('id', function(req, res, next, id) {
             next();
         })
         .then(null, next);
-    } else {res.sendStatus(403)}
+    // } else {res.sendStatus(403)}
 
 });
 
@@ -47,12 +47,13 @@ function assertAdmin(req, res, next){
 
 router.post('/', assertAdmin, function(req, res, next) {
 	//post should have email, pass, phone, and maybe isAdmin?
+	// console.log(req.body)
 	var email = req.body.email;
 	var name = req.body.name;
-	var number = req.body.number;
+	var number = req.body.phone;
 
-	
-	if (email.search(/[\s\(\)]/) === -1 && name.search(/[\(\)]/) === -1 && number.search(/[\(\)]/)) {
+
+	// if (email.search(/[\s\(\)]/) === -1 && name.search(/[\(\)]/) === -1 && number.search(/[\(\)]/)) {
 
 	// console.log(req.body)
     // req.body.isAdmin = false;
@@ -61,7 +62,7 @@ router.post('/', assertAdmin, function(req, res, next) {
             res.status(201).json(user);
         })
         .then(null, next);
-        	} else {res.sendStatus(403)}
+        	// } else {res.sendStatus(403)}
 
 });
 
